@@ -316,6 +316,7 @@ class Solver(object):
             if (i+1) % self.sample_step == 0:
                 with torch.no_grad():
                     x_fake_list = [x_fixed]
+                    
                     for c_fixed in c_fixed_list:
                         x_fake_list.append(self.G(x_fixed, c_fixed))
                     x_concat = torch.cat(x_fake_list, dim=3)
@@ -568,6 +569,7 @@ class Solver(object):
 
                 # Translate images.
                 x_fake_list = [x_real]
+                
                 for c_celeba in c_celeba_list:
                     c_trg = torch.cat([c_celeba, zero_rafd, mask_celeba], dim=1)
                     x_fake_list.append(self.G(x_real, c_trg))

@@ -30,7 +30,7 @@ class CelebA(data.Dataset):
 
     def preprocess(self):
         """Preprocess the CelebA attribute file."""
-        lines = [line.rstrip() for line in open(self.attr_path, 'r')]
+        lines = [line.rstrip() for line in open(self.attr_path, 'r')]	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
         all_attr_names = lines[1].split()
         for i, attr_name in enumerate(all_attr_names):
             self.attr2idx[attr_name] = i
@@ -48,8 +48,8 @@ class CelebA(data.Dataset):
             for attr_name in self.selected_attrs:
                 idx = self.attr2idx[attr_name]
                 label.append(values[idx] == '1')
-
-            if (i+1) < 2000:
+            #i+1<2000
+            if (i+1) < 2:
                 self.test_dataset.append([filename, label])
             else:
                 self.train_dataset.append([filename, label])
@@ -89,4 +89,6 @@ def get_loader(image_dir, attr_path, selected_attrs, crop_size=178, image_size=1
                                   batch_size=batch_size,
                                   shuffle=(mode=='train'),
                                   num_workers=num_workers)
+    #my
+    #print("DATA LOADER"+type(data_loader))
     return data_loader

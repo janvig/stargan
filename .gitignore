@@ -1,0 +1,4 @@
+data/celeba/images
+stargan_celeba_256/results
+stargan_celeba_256/models
+__pycache__
